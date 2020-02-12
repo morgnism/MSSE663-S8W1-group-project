@@ -7,12 +7,13 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { LoginFormComponent } from './login/login-form/login-form.component';
+import { AuthInterceptor } from './auth.interceptor';
 import { RegisterComponent} from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
-// import { LoginFormComponent } from './loginform/loginform.component';
-import { AuthInterceptor } from './auth.interceptor';
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
-  
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +21,7 @@ import { AddRecipeComponent } from './add-recipe/add-recipe.component';
     AddRecipeComponent,
     RegisterComponent,
     ProfileComponent,
-    // LoginFormComponent
+    LoginFormComponent
   ],
   imports: [
     HttpClientModule,
