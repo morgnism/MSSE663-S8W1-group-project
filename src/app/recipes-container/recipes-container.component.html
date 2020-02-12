@@ -1,0 +1,5 @@
+<div *ngIf="recipes$ | async as recipes">
+  <ul *ngFor="let recipe of recipes">
+    <li>{{ recipe.name }} - {{ recipe.type | concat }}</li>
+  </ul>
+</div>

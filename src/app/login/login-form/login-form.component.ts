@@ -1,10 +1,10 @@
-import { Component, OnInit, Output, Input, EventEmitter } from "@angular/core";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
-  selector: "app-login-form",
-  templateUrl: "./login-form.component.html",
-  styleUrls: ["./login-form.component.scss"]
+  selector: 'app-login-form',
+  templateUrl: './login-form.component.html',
+  styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit {
   loginForm: FormGroup;
@@ -19,8 +19,8 @@ export class LoginFormComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      username: ["", Validators.required],
-      password: ["", Validators.required]
+      username: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 
@@ -29,11 +29,11 @@ export class LoginFormComponent implements OnInit {
   }
 
   get username() {
-    return this.loginForm.get("username");
+    return this.loginForm.get('username');
   }
 
   get password() {
-    return this.loginForm.get("password");
+    return this.loginForm.get('password');
   }
 
   login() {
