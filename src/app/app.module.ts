@@ -13,7 +13,6 @@ import { RegisterComponent} from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
