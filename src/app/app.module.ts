@@ -6,17 +6,13 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { ProfileComponent } from './profile/profile.component';
-import {AuthInterceptor} from './auth.interceptor';
+import { RecipeModelComponent } from './recipe-model/recipe-model.component';
+import { AuthInterceptor } from './auth.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    ProfileComponent
+    RecipeModelComponent
   ],
   imports: [
     HttpClientModule,

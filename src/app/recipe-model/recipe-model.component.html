@@ -1,0 +1,23 @@
+<div class="recipe-entry">
+    <div class="title-block"> {{myRecipe.title}} </div>
+    <div *ngIf="(myRecipe.tags | async)">
+        <div *ngFor="let tag in tags">
+            {{myRecipe.tags}}
+        </div>
+    </div>
+    <div *ngIf="knownAllergens"> {{myRecipe.knownAllergens}} </div>
+    <div *ngIf="myRecipe.prepTime"> {{myRecipe.}} </div>
+    <div *ngIf="myRecipe.cookTime"> {{myRecipe.}} </div>
+    <div *ngIf="(( myRecipe.prepTime || myRecipe.cookTime ) | async)"></div>
+    <div *ngIf="(myRecipe.ingredients | async)">
+        <div *ngFor="let ingredient in ingredients">
+            {{myRecipe.ingredients}}
+        </div>
+    </div>
+    <div *ngIf="(myRecipe.steps | async)">
+        <div *ngFor="let step in steps">
+            {{myRecipe.steps}}
+        </div>
+    </div>
+    <div *ngIf="comments">{{myRecipe.comments}}</div>
+</div >
