@@ -29,6 +29,12 @@ export class RecipeService {
   }
 
   // ToDo: type our return observable
+
+  // Maybe rename function too, also noted in component
+  // Also, you're using FormGroup in add-recipe, you can put that
+  // into FormData and send that instead of sending each piece.
+  // Example: addRecipe(form: FormData)(~.post<any>("theUrl/recipes/addRecipe", form))
+
   addRecipe(title: string, ingredients: string, steps: string): Observable<any> {
     return this.httpClient.post<any>(`${this.API_URL}/recipes/addRecipe`, {title, ingredients, steps})
       .pipe(map

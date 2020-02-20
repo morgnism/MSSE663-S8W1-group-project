@@ -10,6 +10,10 @@
           </div>
           <div class="form-group" [ngClass]="{ 'has-error': submitted && field.ingredients.errors }">
             <label for="ingredients">Ingredients</label>
+            
+            <!-- What about changing this from input to textarea? 
+                 We haven't agreed on a specific model, but the profile component 
+                 template uses textarea -->
             <input type="text" class="form-control" name="ingredients" formControlName="ingredients" id="ingredients"
                    required />
             <div *ngIf="submitted && field.ingredients.errors" class="help-block">
@@ -18,6 +22,8 @@
           </div>
           <div class="form-group" [ngClass]="{ 'has-error': submitted && field.steps.errors }">
             <label for="steps">Steps</label>
+
+            <!-- Same thing here, change input to textarea -->
             <input type="text" class="form-control" name="steps" formControlName="steps" id="steps"
                    required />
             <div *ngIf="submitted && field.steps.errors" class="help-block">

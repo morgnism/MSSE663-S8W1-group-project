@@ -12,6 +12,9 @@ export const addRecipe = async (req: any, res: any) => {
         };
         const recipe = new Recipe(newRecipe);
         // I should probably be generating unique IDs for recipes...
+        // MongoDB does that automatically if you don't specify an _id
+        // Where are you calling the save function to MongoDB?? I don't see it
+        
         res.status(201).send({recipe});
     } catch (error) {
         res.status(500).send('SERVER_ERROR');

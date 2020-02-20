@@ -34,22 +34,28 @@ export class AddRecipeComponent implements OnInit {
   ngOnInit() {
     this.newRecipeForm = this.formBuilder.group({
       title: ['', Validators.required],
-      ingredients: ['', Validators.required],
-      steps: ['', Validators.required]
+      ingredients: ['', Validators.required], // Do some default Text here so you can create but don't have to finish
+      steps: ['', Validators.required] // Same here
     });
     // Do we want to then take you to the recipe page?
     // Or let you enter a new recipe?
+    /****** How often would a user create more than one recipe at a time? *********/
+    
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/profile';
   }
 
   get field() { return this.newRecipeForm.controls; }
 
+  // Maybe change this to submitRecipe
   addRecipe() {
     this.submitted = true;
     if (this.newRecipeForm.invalid) {
       return;
     }
     this.loading = true;
+    // Change this to saveRecipe? Purely a readability thing
+    // Also, putting this data into FormData and sending one 
+    // thing might be a better direction.
     this.recipeService.addRecipe(
       this.field.title.value,
       this.field.ingredients.value,
