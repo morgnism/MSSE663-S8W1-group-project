@@ -17,10 +17,10 @@ import { AddRecipeComponent } from './add-recipe/add-recipe.component';
   declarations: [
     AppComponent,
     LoginComponent,
-    AddRecipeComponent,
+    LoginFormComponent,
     RegisterComponent,
     ProfileComponent,
-    LoginFormComponent
+    AddRecipeComponent
   ],
   imports: [
     HttpClientModule,
