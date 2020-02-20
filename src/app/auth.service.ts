@@ -17,6 +17,7 @@ export class AuthService {
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   // currentUser = {};
   private currentUserSubject: BehaviorSubject<User>;
+  // ToDo: Update to currentUser$
   public currentUser: Observable<User>;
 
   constructor(private httpClient: HttpClient, public router: Router) {

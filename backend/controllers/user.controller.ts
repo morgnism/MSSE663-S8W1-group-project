@@ -1,4 +1,6 @@
-import {User} from '../models/user.models';
+import { 
+  User, 
+  UserModel } from '../models/user.models';
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 import * as fs from 'fs';
@@ -52,7 +54,10 @@ export const registerUser = async (req: any, res: any) => {
 };
 
 export const getLoggedInUser = async (req: any, res: any) => {
-  res.send(req.user);
+  res.send(req.user)
+  .catch(function(){
+    console.log('Error getting logout post');
+  });
 };
 
 export const loginUser = async (req: any, res: any) => {
@@ -94,7 +99,8 @@ export const logoutAllUser = async (req: any, res: any) => {
 };
 
 export const updateUser = async (req: any, res: any) => {
-  const newData = {};
+  const newData = {} as UserModel;
+
   if (req.body.password) {
     newData['password'] = req.body.password;
     if (newData['password'].length < 6) {

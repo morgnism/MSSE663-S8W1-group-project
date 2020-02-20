@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import {AuthService} from '../auth.service';
@@ -41,7 +41,8 @@ export class RegisterComponent implements OnInit {
   }
 
   // convenience getter for easy access to form fields
-  get f() { return this.registerForm.controls; }
+  // We should take this out to some higher level and not repeate it for every form
+  get field() { return this.registerForm.controls; }
 
   register() {
     this.submitted = true;
@@ -49,7 +50,12 @@ export class RegisterComponent implements OnInit {
       return;
     }
     this.loading = true;
-    this.authService.register(this.f.firstName.value, this.f.lastName.value, this.f.username.value, this.f.password.value)
+    this.authService.register( 
+      this.field.firstName.value, 
+      this.field.lastName.value, 
+      this.field.username.value, 
+      this.field.password.value
+    )
       .pipe(first())
       .subscribe(
         data => {
