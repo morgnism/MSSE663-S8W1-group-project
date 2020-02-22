@@ -1,8 +1,7 @@
 import { Recipe, RecipeModel } from '../models/recipe.model';
-import * as bcrypt from 'bcryptjs';
-import * as jwt from 'jsonwebtoken';
 import * as fs from 'fs';
 
+// CRUD Create, HTTP Post
 export const addRecipe = async (req: any, res: any) => {
     try {
         const newRecipe = {
@@ -22,6 +21,7 @@ export const addRecipe = async (req: any, res: any) => {
     }
 };
 
+// CRUD Read, HTTP Get
 export const viewRecipes = async (req: any, res: any) => {
     try {
         // const recipes = await Recipe.findMany({...recipes});
@@ -44,6 +44,7 @@ export const viewRecipes = async (req: any, res: any) => {
     }
 };
 
+// CRUD Update, HTTP Put
 // export const updateRecipe = async (req: any, res: any) => {
 //   const newRecipe = {} as RecipeModel;
 //   if (req.body.title) {
@@ -66,3 +67,15 @@ export const viewRecipes = async (req: any, res: any) => {
 //     }
 //   );
 // };
+
+export const deleteRecipe = async (title: string) => {
+    // Search for recipe by unique identifier?
+    // or title?
+    const recipe = await Recipe.findOneAndDelete({title});
+    if (!recipe) {
+        throw new Error('404 Recipe not found error');
+    }
+
+    // return confirmation?
+    // res.status(200).send('Delete successfull');
+}

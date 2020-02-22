@@ -12,6 +12,7 @@ import { AuthInterceptor } from './auth.interceptor';
 import { RegisterComponent} from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
+import { RecipeListComponent } from './recipe-list/recipe-list.component';
   
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AddRecipeComponent } from './add-recipe/add-recipe.component';
     LoginFormComponent,
     RegisterComponent,
     ProfileComponent,
-    AddRecipeComponent
+    AddRecipeComponent,
+    RecipeListComponent
   ],
   imports: [
     HttpClientModule,

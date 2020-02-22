@@ -15,14 +15,12 @@ import {environment} from '../environments/environment';
 export class AuthService {
   API_URL: string = environment.apiUrl;
   headers = new HttpHeaders().set('Content-Type', 'application/json');
-  // currentUser = {};
   private currentUserSubject: BehaviorSubject<User>;
-  // ToDo: Update to currentUser$
-  public currentUser: Observable<User>;
+  public currentUser$: Observable<User>;
 
   constructor(private httpClient: HttpClient, public router: Router) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-    this.currentUser = this.currentUserSubject.asObservable();
+    this.currentUser$ = this.currentUserSubject.asObservable();
   }
 
   public get currentUserValue(): User {
@@ -37,7 +35,7 @@ export class AuthService {
             localStorage.setItem('access_token', res.token);
             localStorage.setItem('currentUser', JSON.stringify(res.user));
             this.getUserProfile(res.user._id).subscribe((result) => {
-              this.currentUser = res.user;
+              this.currentUser$ = res.user;
             });
           }
           return user;
@@ -56,7 +54,7 @@ export class AuthService {
             localStorage.setItem('access_token', res.token);
             localStorage.setItem('currentUser', JSON.stringify(res.user));
             this.getUserProfile(res.user._id).subscribe((res) => {
-              this.currentUser = res.user;
+              this.currentUser$ = res.user;
             });
           }
           return user;
@@ -107,7 +105,7 @@ export class AuthService {
     return this.httpClient.put<any>(`${this.API_URL}/users/update`, {firstName, lastName, password}).pipe(
       map((res: any) => {
         this.getUserProfile(res._id).subscribe((result) => {
-          this.currentUser = result;
+          this.currentUser$ = result;
           localStorage.setItem('currentUser', JSON.stringify(result));
           return result;
         });

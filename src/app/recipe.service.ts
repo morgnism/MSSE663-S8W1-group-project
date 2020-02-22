@@ -12,7 +12,7 @@ import { catchError, map } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 
 // MSSE 663 20S8W1 Imports
-// import { RecipeModel } from '../../backend/models/recipe.model';
+import { RecipeModel } from '../../backend/models/recipe.model';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +28,19 @@ export class RecipeService {
     // this.newRecipeSubject: BehaviorSubject<RecipeModel>
   }
 
+  getRecipes(): Observable<any> {
+    return this.httpClient.get(`${this.API_URL}/recipes/view`).pipe(
+      map((res: Response) => {
+        return res || {};
+      }),
+      catchError(this.handleError)
+    );
+  }
+
+  selectedRecipe(recipe: RecipeModel): Observable<any> {
+    return;
+  }
+
   // ToDo: type our return observable
 
   // Maybe rename function too, also noted in component
@@ -35,17 +48,15 @@ export class RecipeService {
   // into FormData and send that instead of sending each piece.
   // Example: addRecipe(form: FormData)(~.post<any>("theUrl/recipes/addRecipe", form))
 
-  addRecipe(title: string, ingredients: string, steps: string): Observable<any> {
+  saveRecipe(title: string, ingredients: string, steps: string): Observable<any> {
     return this.httpClient.post<any>(`${this.API_URL}/recipes/addRecipe`, {title, ingredients, steps})
-      .pipe(map
-        (res => {
+      .pipe(map(res => {
         const recipe = res.recipe;
         
         // Do I need to be setting something, sending something?
         // Or does the register function just duplicate login code?
 
         // if (res.recipe) {
-        //   localStorage.setItem('access_token', res.token);
         //   localStorage.setItem('currentUser', JSON.stringify(res.user));
         //   this.getUserProfile(res.user._id).subscribe((result) => {
         //     this.currentUser = res.user;
@@ -76,12 +87,6 @@ export class RecipeService {
     }
     const errorCode = errorRes.error;
     switch (errorCode) {
-      // case 'AUTH_USERNAME':
-      //   errorMessage = 'This username exists already';
-      //   break;
-      // case 'AUTH_PASS_LENGTH':
-      //   errorMessage = 'The password must be at least 6 characters long';
-      //   break;
       case 'SERVER_ERROR':
         errorMessage = 'Something happened server-side and the recipe wasn\'t added.';
         break;

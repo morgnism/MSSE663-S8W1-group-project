@@ -29,7 +29,7 @@ const findByCredentials = async (username: string, password: string) => {
 
 export const registerUser = async (req: any, res: any) => {
   try {
-    // Req.body should have username and password. isAuthor also doubles as staff for this application
+    // Req.body should have username and password. 
     const data = {
       firstName: req.body.firstName,
       lastName: req.body.lastName,

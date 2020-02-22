@@ -34,14 +34,10 @@ export class AddRecipeComponent implements OnInit {
   ngOnInit() {
     this.newRecipeForm = this.formBuilder.group({
       title: ['', Validators.required],
-      ingredients: ['', Validators.required], // Do some default Text here so you can create but don't have to finish
-      steps: ['', Validators.required] // Same here
+      ingredients: ['List of ingredients', Validators.required],
+      steps: ['1. ', Validators.required]
     });
-    // Do we want to then take you to the recipe page?
-    // Or let you enter a new recipe?
-    /****** How often would a user create more than one recipe at a time? *********/
-    
-    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/profile';
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/recipes/view';
   }
 
   get field() { return this.newRecipeForm.controls; }
@@ -56,7 +52,7 @@ export class AddRecipeComponent implements OnInit {
     // Change this to saveRecipe? Purely a readability thing
     // Also, putting this data into FormData and sending one 
     // thing might be a better direction.
-    this.recipeService.addRecipe(
+    this.recipeService.saveRecipe(
       this.field.title.value,
       this.field.ingredients.value,
       this.field.steps.value

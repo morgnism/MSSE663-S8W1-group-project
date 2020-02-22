@@ -6,6 +6,7 @@ import cors = require('cors');
 
 import { databaseName } from './environment';
 import { userRoutes } from './routes/user.routes';
+import { recipeRoutes } from './routes/recipe.routes';
 
 const app = express();
 
@@ -34,6 +35,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use('/users', userRoutes);
+app.use('/recipes', recipeRoutes);
 
 // Start Server
 app.listen(port, () => {
