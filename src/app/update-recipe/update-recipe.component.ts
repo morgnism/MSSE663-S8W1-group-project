@@ -8,11 +8,11 @@ import { first } from 'rxjs/operators';
 import { RecipeService } from '../recipe.service';
 
 @Component({
-  selector: 'app-add-recipe',
-  templateUrl: './add-recipe.component.html',
-  styleUrls: ['./add-recipe.component.scss']
+  selector: 'app-update-recipe',
+  templateUrl: './update-recipe.component.html',
+  styleUrls: ['./update-recipe.component.scss']
 })
-export class AddRecipeComponent implements OnInit {
+export class UpdateRecipeComponent implements OnInit {
 
   newRecipeForm: FormGroup;
   loading = false;
@@ -25,32 +25,25 @@ export class AddRecipeComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private recipeService: RecipeService,
-  ) { 
-    // if ( !this.authService.isLoggedIn() ) { 
-    //    prevent user from creating new recipes 
-    // }
-  }
+  ) { }
 
   ngOnInit() {
     this.newRecipeForm = this.formBuilder.group({
-      title: ['', Validators.required],
-      ingredients: ['List of ingredients', Validators.required],
-      steps: ['1. ', Validators.required]
+      title: ['update me'], // TODO: Make an observable
+      ingredients: ['update me'], // TODO: Make an observable
+      steps: ['update me'] // TODO: Make an observable
     });
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/recipes/view';
   }
 
   get field() { return this.newRecipeForm.controls; }
 
-  // Maybe change this to submitRecipe
-  addRecipe() {
+  updateRecipe() {
     this.submitted = true;
     if (this.newRecipeForm.invalid) {
       return;
     }
     this.loading = true;
-    // Also, putting this data into FormData and sending one 
-    // thing might be a better direction.
     this.recipeService.saveRecipe(
       this.field.title.value,
       this.field.ingredients.value,
@@ -59,7 +52,7 @@ export class AddRecipeComponent implements OnInit {
       pipe(first())
       .subscribe(
         data => {
-          window.alert('New recipe added!');
+          window.alert('Recipe updated!');
           this.router.navigate([this.returnUrl]);
         },
         error => {

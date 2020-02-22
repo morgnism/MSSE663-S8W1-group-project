@@ -7,6 +7,7 @@ import cors = require('cors');
 import { databaseName } from './environment';
 import { userRoutes } from './routes/user.routes';
 import { recipeRoutes } from './routes/recipe.routes';
+import { Recipe } from './models/recipe.model';
 
 const app = express();
 
@@ -29,7 +30,11 @@ db.once('open', () => {
 });
 
 // CORS Middleware
-app.use(cors());
+const corsOptions = {
+  origin: 'http://localhost:4200',
+  optionsSuccessStatus: 200
+}
+app.use(cors(corsOptions));
 
 // Body Parser Middleware
 app.use(bodyParser.json());
@@ -41,3 +46,30 @@ app.use('/recipes', recipeRoutes);
 app.listen(port, () => {
   console.log('Server started and listening on port ' + port);
 });
+
+function defaultRecipes() {
+  let recipes = [
+    {
+      title: "First recipe",
+      ingredients: "MongoDB",
+      steps: "1. Make a database"
+    },
+    {
+      title: "Second recipe",
+      ingredients: "Angular CLI: HTML, CSS, TypeScript",
+      steps: "2. Make an Angular app"
+    },
+    {
+      title: "Third recipe",
+      ingredients: "Mongoose, express, cor",
+      steps: "3. Hook them up"
+    }
+  ];
+
+  for (let i = 0; i < recipes.length; i++) {
+    const recipe = new Recipe(recipes[i]);
+    recipe.save();
+  }
+
+  console.log("Default recipes loaded");
+}

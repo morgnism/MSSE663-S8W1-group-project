@@ -13,6 +13,7 @@ import { RegisterComponent} from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
+import { UpdateRecipeComponent } from './update-recipe/update-recipe.component';
   
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { RecipeListComponent } from './recipe-list/recipe-list.component';
     RegisterComponent,
     ProfileComponent,
     AddRecipeComponent,
-    RecipeListComponent
+    RecipeListComponent,
+    UpdateRecipeComponent
   ],
   imports: [
     HttpClientModule,

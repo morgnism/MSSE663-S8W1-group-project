@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'MSSE663-S8W1-group-project';
+  title = 'MSSE663 S8W1 Group Project: Recipe Book WebApp';
 
   constructor(
     public authService: AuthService,

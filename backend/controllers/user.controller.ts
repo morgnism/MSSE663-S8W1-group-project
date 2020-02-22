@@ -42,6 +42,7 @@ export const registerUser = async (req: any, res: any) => {
       data.password = await bcrypt.hash(data.password, 8);
       const user = new User(data);
       const token = await generateAuthToken(user);
+      user.save()
       res.status(201).send({user, token});
     }
   } catch (error) {
@@ -54,10 +55,12 @@ export const registerUser = async (req: any, res: any) => {
 };
 
 export const getLoggedInUser = async (req: any, res: any) => {
-  res.send(req.user)
-  .catch(function(){
+  try {
+    res.send(req.user);
+  } catch (error) {
     console.log('Error getting logout post');
-  });
+    res.status(500).send(error);
+  }
 };
 
 export const loginUser = async (req: any, res: any) => {

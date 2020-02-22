@@ -9,6 +9,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthGuard } from './auth.guard';
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
+import { UpdateRecipeComponent } from './update-recipe/update-recipe.component';
 
 const routes: Routes = [
   { path: '',               redirectTo: 'login', pathMatch: 'full' },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'register',       component: RegisterComponent },
   { path: 'new',            component: AddRecipeComponent },
   { path: 'view',           component: RecipeListComponent },
+  { path: 'updateRecipe',   component: UpdateRecipeComponent },
   {
     path: 'profile',
     component: ProfileComponent,

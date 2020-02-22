@@ -10,9 +10,30 @@ export const addRecipe = async (req: any, res: any) => {
             steps: req.body.ingredients
         };
         const recipe = new Recipe(newRecipe);
-        // I should probably be generating unique IDs for recipes...
-        // MongoDB does that automatically if you don't specify an _id
-        // Where are you calling the save function to MongoDB?? I don't see it
+        
+        recipe.save( (error, thisRecipe) => {
+            if (error) {
+                // return console.log(error);
+                return console.error(error);
+            }
+            console.log(req.body.title + " was added to the database!")
+        });
+        
+        
+        // recipe.save().then( result => {
+        //     res.status(202).json({
+        //         message: "Saved a recipe!",
+        //         recipeStuff: {
+        //             // name: result['title'],
+        //             // steps: result.steps
+        //         }
+        //     })
+        // }).catch( err => {
+        //     console.log(err),
+        //     res.status(505).json({
+        //         error: err
+        //     });
+        // });
         
         res.status(201).send({recipe});
     } catch (error) {
@@ -45,28 +66,28 @@ export const viewRecipes = async (req: any, res: any) => {
 };
 
 // CRUD Update, HTTP Put
-// export const updateRecipe = async (req: any, res: any) => {
-//   const newRecipe = {} as RecipeModel;
-//   if (req.body.title) {
-//     newRecipe['title'] = req.body.title;
-//   }
-//   if (req.body.ingredients) {
-//     newRecipe['ingredients'] = req.body.ingredients;
-//   }
-//   if (req.body.lastName) {
-//     newRecipe['lastName'] = req.body.lastName;
-//   }
-//   User.findByIdAndUpdate(req.user.title, {
-//       $set: newRecipe
-//     }, (error: any, data: any) => {
-//       if (error) {
-//         res.status(500).send('UPDATE_FAIL');
-//       } else {
-//         res.send(data);
-//       }
-//     }
-//   );
-// };
+export const updateRecipe = async (req: any, res: any) => {
+    const recipeToUpdate = {} as RecipeModel;
+    if (req.body.title) {
+        recipeToUpdate['title'] = req.body.title;
+    }
+    if (req.body.ingredients) {
+        recipeToUpdate['ingredients'] = req.body.ingredients;
+    }
+    if (req.body.steps) {
+        recipeToUpdate['steps'] = req.body.steps;
+    }
+
+    Recipe.findByIdAndUpdate(req.user.title, {
+      $set: recipeToUpdate
+    }, (error: any, data: any) => {
+      if (error) {
+        res.status(500).send('UPDATE_FAIL');
+      } else {
+        res.send(data);
+      }
+    });
+};
 
 export const deleteRecipe = async (title: string) => {
     // Search for recipe by unique identifier?

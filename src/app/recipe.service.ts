@@ -14,6 +14,10 @@ import { environment } from '../environments/environment';
 // MSSE 663 20S8W1 Imports
 import { RecipeModel } from '../../backend/models/recipe.model';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json'})
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -23,6 +27,7 @@ export class RecipeService {
 
   // private newRecipeSubject: BehaviorSubject<RecipeModel>;
   // private newRecipe$: Observable<RecipeModel>;
+  private recipeToUpdate$: Observable<RecipeModel>;
 
   constructor(private httpClient: HttpClient, public router: Router) {
     // this.newRecipeSubject: BehaviorSubject<RecipeModel>
@@ -48,37 +53,31 @@ export class RecipeService {
   // into FormData and send that instead of sending each piece.
   // Example: addRecipe(form: FormData)(~.post<any>("theUrl/recipes/addRecipe", form))
 
-  saveRecipe(title: string, ingredients: string, steps: string): Observable<any> {
-    return this.httpClient.post<any>(`${this.API_URL}/recipes/addRecipe`, {title, ingredients, steps})
-      .pipe(map(res => {
-        const recipe = res.recipe;
-        
-        // Do I need to be setting something, sending something?
-        // Or does the register function just duplicate login code?
+  saveRecipe(title: string, ingredients: string, steps: string): Observable<RecipeModel> {
+    console.log(title + ingredients + steps);
+    return this.httpClient.post<RecipeModel>(`${this.API_URL}/recipes/new`, {title, ingredients, steps}, httpOptions);
+  }
 
-        // if (res.recipe) {
-        //   localStorage.setItem('currentUser', JSON.stringify(res.user));
-        //   this.getUserProfile(res.user._id).subscribe((result) => {
-        //     this.currentUser = res.user;
-        //   });
-        // }
-        return recipe;
+  getRecipe(id): Observable<any> {
+    return this.httpClient.get(`${this.API_URL}/recipes/view`).pipe(
+      map((res: Response) => {
+        return res || {};
       }),
       catchError(this.handleError)
     );
   }
 
-  // updateRecipe(title: string, ingredients: string, steps: string) {
-  //   return this.httpClient.put<any>(`${this.API_URL}/recipes/updateRecipe`, {title, ingredients, steps}).pipe(
-  //     map((res: any) => {
-  //       this.getRecipe(res._id).subscribe((result) => {
-  //         this.recipeToUpdate = result;
-  //         localStorage.setItem('recipe', JSON.stringify(result));
-  //         return result;
-  //       });
-  //     }),
-  //     catchError(this.handleError));
-  // }
+  updateRecipe(title: string, ingredients: string, steps: string) {
+    return this.httpClient.put<any>(`${this.API_URL}/recipes/updateRecipe`, {title, ingredients, steps}).pipe(
+      map((res: any) => {
+        this.getRecipe(res._id).subscribe((result) => {
+          this.recipeToUpdate$ = result;
+          localStorage.setItem('recipe', JSON.stringify(result));
+          return result;
+        });
+      }),
+      catchError(this.handleError));
+  }
 
   handleError(errorRes: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred!';

@@ -25,8 +25,7 @@ export class ProfileComponent implements OnInit {
     public formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private authService: AuthService,
-    // private alertService: AlertService
+    private authService: AuthService
   ) {
     // const id = this.activatedRoute.snapshot.paramMap.get('id');
     // const currentUser = this.authService.currentUserValue;

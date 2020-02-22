@@ -5,19 +5,30 @@ import { Router } from '@angular/router';
 import { RecipeService } from '../recipe.service';
 import { RecipeModel } from '../../../backend/models/recipe.model';
 
-// interface Recipe {
-//   title: string;
-//   ingredients: string;
-//   steps: string;
-// }
-
 @Component({
   selector: 'app-recipe-list',
   templateUrl: './recipe-list.component.html',
   styleUrls: ['./recipe-list.component.scss']
 })
 export class RecipeListComponent implements OnInit {
-  recipeList$: Observable<RecipeModel[]>;
+  recipes: RecipeModel[] = [
+    {
+      title: "First recipe",
+      ingredients: ["MongoDB"],
+      steps: ["1. Make a database"]
+    },
+    {
+      title: "Second recipe",
+      ingredients: ["Angular CLI: HTML, CSS, TypeScript"],
+      steps: ["2. Make an Angular app"]
+    },
+    {
+      title: "Third recipe",
+      ingredients: ["Mongoose, express, cor"],
+      steps: ["3. Hook them up"]
+    }
+  ];
+  recipeList$: Observable<RecipeModel[]> = of(this.recipes);
   selectedRecipe: RecipeModel;
   
   constructor(
