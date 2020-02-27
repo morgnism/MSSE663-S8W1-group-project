@@ -1,6 +1,16 @@
 import { Recipe, RecipeModel } from '../models/recipe.model';
 import * as fs from 'fs';
 
+export const defaultCallback = (req: any, res: any) => (
+    err: any,
+    data: any
+  ) => {
+    if (err) {
+      res.send(err);
+    }
+    res.json(data);
+  };
+
 // CRUD Create, HTTP Post
 export const addRecipe = async (req: any, res: any) => {
     try {
@@ -18,23 +28,6 @@ export const addRecipe = async (req: any, res: any) => {
             }
             console.log(req.body.title + " was added to the database!")
         });
-        
-        
-        // recipe.save().then( result => {
-        //     res.status(202).json({
-        //         message: "Saved a recipe!",
-        //         recipeStuff: {
-        //             // name: result['title'],
-        //             // steps: result.steps
-        //         }
-        //     })
-        // }).catch( err => {
-        //     console.log(err),
-        //     res.status(505).json({
-        //         error: err
-        //     });
-        // });
-        
         res.status(201).send({recipe});
     } catch (error) {
         res.status(500).send('SERVER_ERROR');
@@ -44,25 +37,7 @@ export const addRecipe = async (req: any, res: any) => {
 
 // CRUD Read, HTTP Get
 export const viewRecipes = async (req: any, res: any) => {
-    try {
-        // const recipes = await Recipe.findMany({...recipes});
-        // await something.something(); probably
-        // return something;
-
-        // res.send(req.recipe)
-
-        // This is an idea:
-        // const {title, ingredients, steps} = req.body;
-        // const recipe = await findByTitle(title);
-        // if (!recipes) {
-        //      throw new Error('NO RECIPES'); 
-        // }
-
-    } catch (error) {
-        // Not technically that the page doesn't exist,
-        // but that the recipes don't exist
-        res.status(404).send(error);
-    }
+    Recipe.find({}, defaultCallback(req, res));
 };
 
 // CRUD Update, HTTP Put
