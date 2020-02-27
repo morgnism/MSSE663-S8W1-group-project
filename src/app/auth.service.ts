@@ -15,6 +15,7 @@ import {environment} from '../environments/environment';
 export class AuthService {
   API_URL: string = environment.apiUrl;
   headers = new HttpHeaders().set('Content-Type', 'application/json');
+
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser$: Observable<User>;
 

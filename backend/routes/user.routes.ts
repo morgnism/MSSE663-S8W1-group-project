@@ -29,5 +29,3 @@ userRoutes.post('/logout', auth, logoutUser);
 
 // User logs out from ALL devices
 userRoutes.post('/logoutAll', auth, logoutAllUser);
-
-

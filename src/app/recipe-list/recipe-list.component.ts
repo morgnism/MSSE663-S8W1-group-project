@@ -11,23 +11,6 @@ import { RecipeModel } from '../../../backend/models/recipe.model';
   styleUrls: ['./recipe-list.component.scss']
 })
 export class RecipeListComponent implements OnInit {
-  recipes: RecipeModel[] = [
-    {
-      title: "First recipe",
-      ingredients: ["MongoDB"],
-      steps: ["1. Make a database"]
-    },
-    {
-      title: "Second recipe",
-      ingredients: ["Angular CLI: HTML, CSS, TypeScript"],
-      steps: ["2. Make an Angular app"]
-    },
-    {
-      title: "Third recipe",
-      ingredients: ["Mongoose, express, cor"],
-      steps: ["3. Hook them up"]
-    }
-  ];
   recipeList$: Observable<RecipeModel[]> = of(this.recipes);
   selectedRecipe: RecipeModel;
   
@@ -46,6 +29,6 @@ export class RecipeListComponent implements OnInit {
   }
 
   addRecipe(): void {
-    this.router.navigate(['/new']);
+    this.router.navigate(['/view']);
   }
 }

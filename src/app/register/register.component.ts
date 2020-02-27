@@ -44,6 +44,7 @@ export class RegisterComponent implements OnInit {
   // We should take this out to some higher level and not repeate it for every form
   get field() { return this.registerForm.controls; }
 
+
   register() {
     this.submitted = true;
     if (this.registerForm.invalid) {
