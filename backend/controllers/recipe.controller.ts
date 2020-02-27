@@ -17,7 +17,7 @@ export const addRecipe = async (req: any, res: any) => {
         const newRecipe = {
             title: req.body.title,
             ingredients: req.body.ingredients,
-            steps: req.body.ingredients
+            steps: req.body.steps
         };
         const recipe = new Recipe(newRecipe);
         
