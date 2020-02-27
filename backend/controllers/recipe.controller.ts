@@ -23,7 +23,6 @@ export const addRecipe = async (req: any, res: any) => {
         
         recipe.save( (error, thisRecipe) => {
             if (error) {
-                // return console.log(error);
                 return console.error(error);
             }
             console.log(req.body.title + " was added to the database!")
@@ -31,7 +30,6 @@ export const addRecipe = async (req: any, res: any) => {
         res.status(201).send({recipe});
     } catch (error) {
         res.status(500).send('SERVER_ERROR');
-        // res.status(418).send('IM_A_TEAPOT');
     }
 };
 

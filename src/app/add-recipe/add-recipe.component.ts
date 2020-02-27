@@ -69,4 +69,8 @@ export class AddRecipeComponent implements OnInit {
       )
   }
 
+  backToView(): void {
+    this.router.navigate(['/view']);
+  }
+
 }

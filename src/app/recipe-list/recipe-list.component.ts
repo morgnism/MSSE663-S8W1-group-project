@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 import { RecipeService } from '../recipe.service';
@@ -11,7 +11,7 @@ import { RecipeModel } from '../../../backend/models/recipe.model';
   styleUrls: ['./recipe-list.component.scss']
 })
 export class RecipeListComponent implements OnInit {
-  recipeList$: Observable<RecipeModel[]> = of(this.recipes);
+  recipeList$: Observable<RecipeModel[]>;
   selectedRecipe: RecipeModel;
   
   constructor(
@@ -29,6 +29,6 @@ export class RecipeListComponent implements OnInit {
   }
 
   addRecipe(): void {
-    this.router.navigate(['/view']);
+    this.router.navigate(['/new']);
   }
 }
