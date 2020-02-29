@@ -1,16 +1,23 @@
+// 3rd Party Imports
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import {LoginComponent} from './login/login.component';
-import {RegisterComponent} from './register/register.component';
-import {ProfileComponent} from './profile/profile.component';
-import {AuthGuard} from './auth.guard';
-
+// MSSE 663 20S8W1 Imports
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
+import { AuthGuard } from './auth.guard';
+import { AddRecipeComponent } from './add-recipe/add-recipe.component';
+import { RecipeListComponent } from './recipe-list/recipe-list.component';
+import { UpdateRecipeComponent } from './update-recipe/update-recipe.component';
 
 const routes: Routes = [
   { path: '',               redirectTo: 'login', pathMatch: 'full' },
   { path: 'login',          component: LoginComponent },
   { path: 'register',       component: RegisterComponent },
+  { path: 'new',            component: AddRecipeComponent },
+  { path: 'view',           component: RecipeListComponent },
+  { path: 'updateRecipe',   component: UpdateRecipeComponent },
   {
     path: 'profile',
     component: ProfileComponent,

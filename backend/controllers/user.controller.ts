@@ -1,4 +1,6 @@
-import {User} from '../models/user.models';
+import { 
+  User, 
+  UserModel } from '../models/user.models';
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 import * as fs from 'fs';
@@ -27,7 +29,7 @@ const findByCredentials = async (username: string, password: string) => {
 
 export const registerUser = async (req: any, res: any) => {
   try {
-    // Req.body should have username and password. isAuthor also doubles as staff for this application
+    // Req.body should have username and password. 
     const data = {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -40,6 +42,7 @@ export const registerUser = async (req: any, res: any) => {
       data.password = await bcrypt.hash(data.password, 8);
       const user = new User(data);
       const token = await generateAuthToken(user);
+      user.save()
       res.status(201).send({user, token});
     }
   } catch (error) {
@@ -52,7 +55,12 @@ export const registerUser = async (req: any, res: any) => {
 };
 
 export const getLoggedInUser = async (req: any, res: any) => {
-  res.send(req.user);
+  try {
+    res.send(req.user);
+  } catch (error) {
+    console.log('Error getting logout post');
+    res.status(500).send(error);
+  }
 };
 
 export const loginUser = async (req: any, res: any) => {
@@ -94,7 +102,8 @@ export const logoutAllUser = async (req: any, res: any) => {
 };
 
 export const updateUser = async (req: any, res: any) => {
-  const newData = {};
+  const newData = {} as UserModel;
+
   if (req.body.password) {
     newData['password'] = req.body.password;
     if (newData['password'].length < 6) {

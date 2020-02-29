@@ -1,14 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { RecipeService } from '../services/recipe.service';
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { recipe } from '../recipe.model';
 
-interface Recipe {
-  name: string;
-  directions: string;
-  ingredients: string;
-}
+import { RecipeService } from '../recipe.service';
+import { RecipeModel } from '../../../backend/models/recipe.model';
 
 @Component({
   selector: 'app-recipe-list',
@@ -16,8 +11,8 @@ interface Recipe {
   styleUrls: ['./recipe-list.component.scss']
 })
 export class RecipeListComponent implements OnInit {
-  recipeList$: Observable<recipe[]>;
-  selectedRecipe: recipe;
+  recipeList$: Observable<RecipeModel[]>;
+  selectedRecipe: RecipeModel;
   
   constructor(
     private recipeService: RecipeService, 
@@ -28,12 +23,12 @@ export class RecipeListComponent implements OnInit {
     this.recipeList$ = this.recipeService.getRecipes();
   }
 
-  selectRecipe(recipe: recipe): void {
+  selectRecipe(recipe: RecipeModel): void {
     console.log(recipe);
     this.recipeService.selectedRecipe(recipe);
   }
 
   addRecipe(): void {
-    this.router.navigate(['/createRecipe']);
+    this.router.navigate(['/new']);
   }
 }
