@@ -24,12 +24,12 @@ export class LoginComponent implements OnInit {
   ) {
     if (this.authService.isLoggedIn()) {
       window.alert("Already Logged in!");
-      this.router.navigate(["/profile"]);
+      this.router.navigate(["/recipe-list"]);
     }
   }
 
   ngOnInit() {
-    this.returnUrl = this.route.snapshot.queryParams.returnUrl || "/profile";
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || "/recipe-list";
   }
 
   login(loginForm: FormGroup) {

@@ -16,11 +16,10 @@ const routes: Routes = [
   { path: 'login',          component: LoginComponent },
   { path: 'register',       component: RegisterComponent },
   { path: 'new',            component: AddRecipeComponent },
-  { path: 'view',           component: RecipeListComponent },
+  { path: 'recipe-list',           component: RecipeListComponent },
   { path: 'updateRecipe',   component: UpdateRecipeComponent },
   {
-    path: 'profile',
-    component: ProfileComponent,
+    path: 'profile',      component: ProfileComponent,
     canActivate: [AuthGuard],
   },
   {path: '**', redirectTo: '' }
