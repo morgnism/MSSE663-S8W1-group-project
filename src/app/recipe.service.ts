@@ -34,7 +34,7 @@ export class RecipeService {
   }
 
   getRecipes(): Observable<any> {
-    return this.httpClient.get(`${this.API_URL}/recipes/view`).pipe(
+    return this.httpClient.get(`${this.API_URL}/recipes/recipe-list`).pipe(
       map((res: Response) => {
         return res || {};
       }),

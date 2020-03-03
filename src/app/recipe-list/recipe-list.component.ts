@@ -26,6 +26,7 @@ export class RecipeListComponent implements OnInit {
   selectRecipe(recipe: RecipeModel): void {
     console.log(recipe);
     this.recipeService.selectedRecipe(recipe);
+    this.router.navigate(['/recipe-details']);
   }
 
   addRecipe(): void {

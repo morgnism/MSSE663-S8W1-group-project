@@ -1,7 +1,7 @@
 <div class="recipeComponent">
 <div *ngIf="recipeList$ | async as recipes">
     <ul class="recipeList">
-      <li *ngFor="let recipe of recipes"
+      <li *ngFor="let recipe of recipes">
             [class.selected]="recipe === selectedRecipe"
             (click)="selectRecipe(recipe)">
             {{ recipe.title }}
@@ -10,3 +10,4 @@
 </div>
 <button (click)="addRecipe()">Add Recipe</button>
 </div>
+
