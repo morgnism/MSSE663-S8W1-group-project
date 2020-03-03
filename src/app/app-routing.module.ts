@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'new',            component: AddRecipeComponent },
   { path: 'recipe-list',    component: RecipeListComponent },
   { path: 'updateRecipe',   component: UpdateRecipeComponent },
-  { path: 'ingredients', component:IngredientsComponent},
+  { path: 'ingredients/:ingredients', component:IngredientsComponent},
   
   {
     path: 'profile',      component: ProfileComponent,

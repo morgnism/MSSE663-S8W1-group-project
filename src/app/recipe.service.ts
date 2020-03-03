@@ -42,9 +42,6 @@ export class RecipeService {
     );
   }
 
-  selectedRecipe(recipe: RecipeModel): Observable<any> {
-    return;
-  }
   // ToDo: type our return observable
 
   // Maybe rename function too, also noted in component
@@ -65,7 +62,7 @@ export class RecipeService {
       catchError(this.handleError)
     );
   }
-
+ 
   updateRecipe(title: string, ingredients: string, steps: string) {
     return this.httpClient.put<any>(`${this.API_URL}/recipes/updateRecipe`, {title, ingredients, steps}).pipe(
       map((res: any) => {

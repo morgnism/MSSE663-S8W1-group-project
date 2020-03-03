@@ -2,7 +2,7 @@
     <div *ngIf="recipeList$ | async as recipes">
         <ul class="recipeList">
           <li *ngFor="let recipe of recipes"
-                (click)="selectRecipe()">
+                (click)="selectRecipe(recipe)">
                 {{ recipe.title }}
             </li>
         </ul>    

@@ -24,8 +24,9 @@ export class RecipeListComponent implements OnInit {
     this.recipeList$ = this.recipeService.getRecipes();
   }
 
-selectRecipe(): void {
-  this.router.navigate(['/ingredients', ])
+selectRecipe(recipe:RecipeModel): void {
+  this.selectedRecipe = recipe;
+  this.router.navigate(['/ingredients',recipe.ingredients]);
 }
   addRecipe(): void {
     this.router.navigate(['/new']);

@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
-    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/profile';
+    
   }
 
   // convenience getter for easy access to form fields
