@@ -1,10 +1,13 @@
 
  <div class="recipeDetails">
-  <div *ngIf="recipeList$ | async as recipes">
-      <ul class="recipeName">
+  <h1 class="sectionName">Ingredients</h1>
+  <div class="sectionBox" *ngIf="recipeList$ | async as recipes">
+      <ul>
+        
         <li *ngFor="let recipe of recipes"
               [class.selected]="recipe === selectedRecipe"
               (click)="selectRecipe(recipe)">
+            
               {{ recipe.ingredients }}
           </li>
       </ul>    

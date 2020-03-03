@@ -33,7 +33,7 @@ export class UpdateRecipeComponent implements OnInit {
       ingredients: ['update me'], // TODO: Make an observable
       steps: ['update me'] // TODO: Make an observable
     });
-    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/recipes/view';
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/recipes/recipe-list';
   }
 
   get field() { return this.newRecipeForm.controls; }

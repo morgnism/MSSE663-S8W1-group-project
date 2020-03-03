@@ -5,11 +5,11 @@ import { RecipeService } from '../recipe.service';
 import { RecipeModel } from '../../../backend/models/recipe.model';
 
 @Component({
-  selector: 'app-recipe-details',
-  templateUrl: './recipe-details.component.html',
-  styleUrls: ['./recipe-details.component.scss']
+  selector: 'app-ingredients',
+  templateUrl: './ingredients.component.html',
+  styleUrls: ['./ingredients.component.scss']
 })
-export class RecipeDetailsComponent implements OnInit {
+export class IngredientsComponent implements OnInit {
     recipeList$: Observable<RecipeModel[]>;
     selectedRecipe: RecipeModel;
     

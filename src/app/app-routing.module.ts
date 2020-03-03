@@ -10,7 +10,7 @@ import { AuthGuard } from './auth.guard';
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { UpdateRecipeComponent } from './update-recipe/update-recipe.component';
-import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
+import { IngredientsComponent } from './ingredients/ingredients.component';
 import { Recipe } from 'backend/models/recipe.model';
 
 const routes: Routes = [
@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'new',            component: AddRecipeComponent },
   { path: 'recipe-list',           component: RecipeListComponent },
   { path: 'updateRecipe',   component: UpdateRecipeComponent },
-  { path: 'recipe-details', component:RecipeDetailsComponent},
+  { path: 'ingredients', component:IngredientsComponent},
   {
     path: 'profile',      component: ProfileComponent,
     canActivate: [AuthGuard],

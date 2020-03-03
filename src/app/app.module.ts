@@ -14,7 +14,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { UpdateRecipeComponent } from './update-recipe/update-recipe.component';
-import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
+import { IngredientsComponent } from './ingredients/ingredients.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ import { RecipeDetailsComponent } from './recipe-details/recipe-details.componen
     AddRecipeComponent,
     RecipeListComponent,
     UpdateRecipeComponent,
-    RecipeDetailsComponent,
+    IngredientsComponent,
   ],
   imports: [
     HttpClientModule,
