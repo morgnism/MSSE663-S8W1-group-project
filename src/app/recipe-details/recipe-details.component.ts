@@ -26,4 +26,7 @@ selectRecipe(recipe: RecipeModel): void {
   console.log(recipe);
   this.recipeService.selectedRecipe(recipe);
 }
+updateRecipe(): void {
+  this.router.navigate(['/updateRecipe']);
+}
 }

@@ -1,13 +1,15 @@
 
-   <div class="recipeDetails">     
-    <div *ngIf="recipe">
-        <h2 class="recipeName">
-          <li *ngFor="let recipe of recipes"
-                [class.selected]="recipe === selectedRecipe"
-                (click)="selectRecipe(recipe)">
-                {{ recipe.title }}
-            </li>
-        </ul>    
-    </div>
-    <button (click)="updateRecipe()">Update Recipe</button>
-    </div>
+ <div class="recipeDetails">
+  <div *ngIf="recipeList$ | async as recipes">
+      <ul class="recipeName">
+        <li *ngFor="let recipe of recipes"
+              [class.selected]="recipe === selectedRecipe"
+              (click)="selectRecipe(recipe)">
+              {{ recipe.ingredients }}
+          </li>
+      </ul>    
+  </div>
+  <button (click)="updateRecipe()">Update Recipe</button>
+  </div>
+
+    
