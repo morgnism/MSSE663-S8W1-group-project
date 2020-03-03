@@ -1,18 +1,17 @@
 .recipeComponent {
   background-color:rgb(88, 175, 179);
-  width: 15%;
+  width:fit-content;
+  padding: 12px;
 }
 .recipeList {
     list-style-type: none;
     padding: 0;
-    width: 150px;
+    
   }
 
 .recipeList li {
     cursor: pointer;
     position: relative;
-    top: 4px;
-    left: 8px;
     background-color: #EEE;
     margin: 4px;
     padding: 4px 4px;
