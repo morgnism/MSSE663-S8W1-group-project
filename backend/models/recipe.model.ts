@@ -20,7 +20,8 @@ export class RecipeModel {
     comments?: string;
 }
 
-export const RecipeSchema = new Schema<RecipeModel>({
+export const RecipeSchema = new Schema<RecipeModel>(
+    {
     title: {
         type: String
     },

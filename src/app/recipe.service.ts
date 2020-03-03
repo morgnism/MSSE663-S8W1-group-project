@@ -12,7 +12,7 @@ import { catchError, map } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 
 // MSSE 663 20S8W1 Imports
-import { RecipeModel } from '../../backend/models/recipe.model';
+import { RecipeModel, Recipe } from '../../backend/models/recipe.model';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
@@ -45,7 +45,6 @@ export class RecipeService {
   selectedRecipe(recipe: RecipeModel): Observable<any> {
     return;
   }
-
   // ToDo: type our return observable
 
   // Maybe rename function too, also noted in component
@@ -58,7 +57,7 @@ export class RecipeService {
     return this.httpClient.post<RecipeModel>(`${this.API_URL}/recipes/new`, {title, ingredients, steps}, httpOptions);
   }
 
-  getRecipe(id): Observable<any> {
+  getRecipe(id:number | string): Observable<any> {
     return this.httpClient.get(`${this.API_URL}/recipes/view`).pipe(
       map((res: Response) => {
         return res || {};

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { RecipeService } from '../recipe.service';
 import { RecipeModel } from '../../../backend/models/recipe.model';
@@ -16,6 +16,7 @@ export class RecipeListComponent implements OnInit {
   
   constructor(
     private recipeService: RecipeService, 
+    private route: ActivatedRoute,
     private router: Router
   ) { }
 
@@ -23,12 +24,9 @@ export class RecipeListComponent implements OnInit {
     this.recipeList$ = this.recipeService.getRecipes();
   }
 
-  selectRecipe(recipe: RecipeModel): void {
-    console.log(recipe);
-    this.recipeService.selectedRecipe(recipe);
-    this.router.navigate(['/ingredients']);
-  }
-
+selectRecipe(): void {
+  this.router.navigate(['/ingredients', ])
+}
   addRecipe(): void {
     this.router.navigate(['/new']);
   }

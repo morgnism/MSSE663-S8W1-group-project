@@ -18,14 +18,11 @@ export class IngredientsComponent implements OnInit {
       private router: Router
     ) { }
   
-  ngOnInit() {
-    this.recipeList$ = this.recipeService.getRecipes();
-  }
+    ngOnInit() {
+      this.recipeList$ = this.recipeService.getRecipes();
+    }
+  
 
-selectRecipe(recipe: RecipeModel): void {
-  console.log(recipe);
-  this.recipeService.selectedRecipe(recipe);
-}
 updateRecipe(): void {
   this.router.navigate(['/updateRecipe']);
 }
