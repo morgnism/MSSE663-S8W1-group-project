@@ -22,7 +22,7 @@ recipeRoutes.post('/new', addRecipe);
     // "SQL": "SELECT", 
     // "CRUD": "READ"
 // }
-recipeRoutes.get('/view', viewRecipes);
+recipeRoutes.get('/recipe-list', viewRecipes);
 
 // Update recipe
 // { 

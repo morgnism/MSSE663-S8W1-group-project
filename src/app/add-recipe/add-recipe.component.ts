@@ -36,8 +36,8 @@ export class AddRecipeComponent implements OnInit {
       title: ['', Validators.required],
       ingredients: ['List of ingredients', Validators.required],
       steps: ['1. ', Validators.required]
-    });
-    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/recipes/view';
+    })
+   
   }
 
   get field() { return this.newRecipeForm.controls; }
