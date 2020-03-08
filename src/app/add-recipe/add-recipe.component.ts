@@ -60,7 +60,8 @@ export class AddRecipeComponent implements OnInit {
       .subscribe(
         data => {
           window.alert('New recipe added!');
-          this.router.navigate([this.returnUrl]);
+          this.router.navigate(['./main']);
+          //this.router.navigate(['./main']);
         },
         error => {
           this.error = error;
@@ -70,7 +71,7 @@ export class AddRecipeComponent implements OnInit {
   }
 
   backToView(): void {
-    this.router.navigate(['/recipe-list']);
+    this.router.navigate(['/main']);
   }
 
 }

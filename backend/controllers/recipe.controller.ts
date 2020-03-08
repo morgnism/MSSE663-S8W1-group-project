@@ -40,6 +40,7 @@ export const viewRecipes = async (req: any, res: any) => {
 
 // CRUD Update, HTTP Put
 export const updateRecipe = async (req: any, res: any) => {
+    let id = req.params.id;
     const recipeToUpdate = {} as RecipeModel;
     if (req.body.title) {
         recipeToUpdate['title'] = req.body.title;
@@ -50,10 +51,10 @@ export const updateRecipe = async (req: any, res: any) => {
     if (req.body.steps) {
         recipeToUpdate['steps'] = req.body.steps;
     }
+    Recipe.findByIdAndUpdate(id, { $set: recipeToUpdate },
+    
 
-    Recipe.findByIdAndUpdate(req.user.title, {
-      $set: recipeToUpdate
-    }, (error: any, data: any) => {
+    (error: any, data: any) => {
       if (error) {
         res.status(500).send('UPDATE_FAIL');
       } else {
@@ -73,3 +74,15 @@ export const deleteRecipe = async (title: string) => {
     // return confirmation?
     // res.status(200).send('Delete successfull');
 }
+
+export const viewRecipe = async (req: any, res: any) => {
+  let id = req.params.id;
+  Recipe.findById(id, (error: any, data: any) => {
+    if (error) {
+      res.status(500).send('UPDATE_FAIL');
+    } else {
+      res.send(data);
+    }
+  });
+};
+

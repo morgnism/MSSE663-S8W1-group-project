@@ -23,13 +23,13 @@ export class LoginComponent implements OnInit {
     private authService: AuthService // private alertService: AlertService
   ) {
     if (this.authService.isLoggedIn()) {
-      window.alert("Already Logged in!");
-      this.router.navigate(["/recipe-list"]);
+      //window.alert("Already Logged in!");
+      this.router.navigate(["/main"]);
     }
   }
 
   ngOnInit() {
-    this.returnUrl = this.route.snapshot.queryParams.returnUrl || "/recipe-list";
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || "/main";
   }
 
   login(loginForm: FormGroup) {
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          window.alert("Successfully Logged in!");
+          //window.alert("Successfully Logged in!");
           this.router.navigate([this.returnUrl]);
         },
         error => {

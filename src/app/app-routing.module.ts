@@ -12,15 +12,17 @@ import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { UpdateRecipeComponent } from './update-recipe/update-recipe.component';
 import { IngredientsComponent } from './ingredients/ingredients.component';
 import { Recipe } from 'backend/models/recipe.model';
+import { RecipeHomeComponent } from './recipe-home/recipe-home.component';
 
 const routes: Routes = [
   { path: '',               redirectTo: 'login', pathMatch: 'full' },
   { path: 'login',          component: LoginComponent },
   { path: 'register',       component: RegisterComponent },
   { path: 'new',            component: AddRecipeComponent },
+  { path: 'main',           component: RecipeHomeComponent },
   { path: 'recipe-list',    component: RecipeListComponent },
   { path: 'updateRecipe',   component: UpdateRecipeComponent },
-  { path: 'ingredients/:ingredients', component:IngredientsComponent},
+ // { path: 'ingredients/:ingredients', component:IngredientsComponent},
   
   {
     path: 'profile',      component: ProfileComponent,

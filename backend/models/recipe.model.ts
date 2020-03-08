@@ -7,7 +7,7 @@ export class RecipeModel {
         this.steps = newSteps;
     };
 
-    id?: number; // probably actually mandatory
+    _id?: string; // probably actually mandatory
     title: string;
     tags?: Tag[];
     knownAllergens?: Allergen[];

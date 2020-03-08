@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import {  HttpClient, 
           HttpHeaders,
           HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, Subject, BehaviorSubject } from 'rxjs';
 // import { BehaviorSubject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
@@ -13,6 +13,7 @@ import { environment } from '../environments/environment';
 
 // MSSE 663 20S8W1 Imports
 import { RecipeModel, Recipe } from '../../backend/models/recipe.model';
+import { FormGroup } from '@angular/forms';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
@@ -29,8 +30,14 @@ export class RecipeService {
   // private newRecipe$: Observable<RecipeModel>;
   private recipeToUpdate$: Observable<RecipeModel>;
 
+  selectedRecipe: Subject<RecipeModel> = new BehaviorSubject<RecipeModel>(new RecipeModel(null, null, null));
+
   constructor(private httpClient: HttpClient, public router: Router) {
     // this.newRecipeSubject: BehaviorSubject<RecipeModel>
+  }
+
+  setSelectedRecipe(recipe: RecipeModel) {
+    this.selectedRecipe.next(recipe);
   }
 
   getRecipes(): Observable<any> {
@@ -54,8 +61,8 @@ export class RecipeService {
     return this.httpClient.post<RecipeModel>(`${this.API_URL}/recipes/new`, {title, ingredients, steps}, httpOptions);
   }
 
-  getRecipe(id:number | string): Observable<any> {
-    return this.httpClient.get(`${this.API_URL}/recipes/view`).pipe(
+  getRecipe(id:string): Observable<any> {
+    return this.httpClient.get(`${this.API_URL}/recipes/view/${id}`).pipe(
       map((res: Response) => {
         return res || {};
       }),
@@ -63,16 +70,8 @@ export class RecipeService {
     );
   }
  
-  updateRecipe(title: string, ingredients: string, steps: string) {
-    return this.httpClient.put<any>(`${this.API_URL}/recipes/updateRecipe`, {title, ingredients, steps}).pipe(
-      map((res: any) => {
-        this.getRecipe(res._id).subscribe((result) => {
-          this.recipeToUpdate$ = result;
-          localStorage.setItem('recipe', JSON.stringify(result));
-          return result;
-        });
-      }),
-      catchError(this.handleError));
+  updateRecipe(id: string, title: string, ingredients: string, steps: string) {
+    return this.httpClient.put<any>(`${this.API_URL}/recipes/updateRecipe/${id}`, {title, ingredients, steps});
   }
 
   handleError(errorRes: HttpErrorResponse) {

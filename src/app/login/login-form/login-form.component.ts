@@ -37,6 +37,7 @@ export class LoginFormComponent implements OnInit {
   }
 
   login() {
+    console.log(this.sendForm);
     this.sendForm.emit(this.loginForm);
   }
 }

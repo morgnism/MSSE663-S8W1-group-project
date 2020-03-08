@@ -3,7 +3,8 @@ import {
     addRecipe,
     viewRecipes,
     // deleteRecipe,
-    updateRecipe
+    updateRecipe,
+    viewRecipe
 } from '../controllers/recipe.controller';
 
 export const recipeRoutes = express.Router();
@@ -30,7 +31,7 @@ recipeRoutes.get('/recipe-list', viewRecipes);
     // "SQL": "", 
     // "CRUD": "UPDATE"
 // }
-recipeRoutes.put('updateRecipe', updateRecipe )
+recipeRoutes.put('/updateRecipe/:id', updateRecipe )
 
 // Delete recipe
 // { 
@@ -39,3 +40,5 @@ recipeRoutes.put('updateRecipe', updateRecipe )
     // "CRUD": "DELETE"
 // }
 // recipeRoutes.delete('/view', deleteRecipe);
+
+recipeRoutes.get('/view/:id', viewRecipe)
