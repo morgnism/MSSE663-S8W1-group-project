@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { RecipeService } from '../recipe.service';
@@ -12,7 +12,7 @@ import { RecipeModel } from '../../../backend/models/recipe.model';
 })
 export class RecipeListComponent implements OnInit {
   recipeList$: Observable<RecipeModel[]>;
-  selectedRecipe: RecipeModel;
+  recipe: Observable<RecipeModel> = new Observable();
   
   constructor(
     private recipeService: RecipeService, 
@@ -25,8 +25,7 @@ export class RecipeListComponent implements OnInit {
   }
 
 selectRecipe(recipe:RecipeModel): void {
-  this.selectedRecipe = recipe;
-  this.router.navigate(['/ingredients',recipe.ingredients]);
+  this.recipeService.setSelectedRecipe(recipe);
 }
   addRecipe(): void {
     this.router.navigate(['/new']);
