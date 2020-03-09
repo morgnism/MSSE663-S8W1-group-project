@@ -1,0 +1,42 @@
+<div class="centered-content has-background-grey-light">
+    <div class="home-container">
+      <div class="home-selected-container has-background-light">
+        <h2 class="title has-text-primary">Add a new recipe!</h2>
+        <form name="form" [formGroup]="newRecipeForm" (ngSubmit)="addRecipe()">
+          <div class="form-group" [ngClass]="{ 'has-error': submitted && field.title.errors }">
+            <label for="title">Recipe title</label>
+            <input type="text" class="form-control" name="title" formControlName="title" id="title" required/>
+            <div *ngIf="submitted && field.title.errors" class="help-block">Sorry, but a title is required</div>
+          </div>
+          <div class="form-group" [ngClass]="{ 'has-error': submitted && field.ingredients.errors }">
+            <label for="ingredients">Ingredients</label>
+            <input type="textarea" class="form-control" name="ingredients" formControlName="ingredients" id="ingredients"
+                   required />
+            <div *ngIf="submitted && field.ingredients.errors" class="help-block">
+                You can't cook a recipe without ingredients!
+            </div>
+          </div>
+          <div class="form-group" [ngClass]="{ 'has-error': submitted && field.steps.errors }">
+            <label for="steps">Steps</label>
+            <input type="textarea" class="form-control" name="steps" formControlName="steps" id="steps"
+                   required />
+            <div *ngIf="submitted && field.steps.errors" class="help-block">
+                You need to give your readers recipe steps!
+            </div>
+          </div>
+          <div *ngIf="submitted && error" class="form-group" [ngClass]="{ 'has-error': submitted && error }">
+            <div class="help-block">{{error}}</div>
+          </div>
+          <div class="form-group">
+            <button [disabled]="loading" 
+                    class="button is-grey-lighter has-background-gray">
+                    Post recipe
+            </button> <!--(click)="backToView()" We need to fix routing after submit to go to View All-->
+            <img *ngIf="loading"
+                 src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            <a [routerLink]="['/recipe-list']" class="btn-link ">Cancel</a> <!--TODO: Fix this with flexbox to look nicer-->
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
